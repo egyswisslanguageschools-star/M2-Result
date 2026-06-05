@@ -347,7 +347,7 @@
             let currentRank = 1;
             for (let i = 0; i < rankedStudents.length; i++) {
                 if (i > 0 && rankedStudents[i].total < rankedStudents[i-1].total) {
-                    currentRank = i + 1;
+                    currentRank++;
                 }
                 rankedStudents[i].rank = currentRank;
             }
@@ -371,7 +371,7 @@
             const tbody = document.getElementById('leaderboard-body');
             tbody.innerHTML = '';
 
-            const top10 = rankedStudents.slice(0, 10);
+            const top10 = rankedStudents.filter(student => student.rank <= 10);
 
             top10.forEach((student) => {
                 const percentage = ((student.total / FULL_MARKS.main.total) * 100).toFixed(2);
